@@ -1,14 +1,14 @@
 var form = document.getElementById('addForm');
 var itemList = document.getElementById('items');
 var descriptionList = document.getElementById('description');
-var filter = document.getElementById('filter');
+// var filter = document.getElementById('filter');
 
 // Form submit event
 form.addEventListener('submit', addItem);
 // Delete event
 itemList.addEventListener('click', removeItem);
 // Filter event
-filter.addEventListener('keyup', filterItems);
+// filter.addEventListener('keyup', filterItems);
 
 // Add item
 function addItem(e){
@@ -59,21 +59,21 @@ function removeItem(e){
 
 
 
-//Filter Items
-function filterItems(e){
-  // convert text to lowercase
-  var text = e.target.value.toLowerCase();
-  // Get lis
-  var items = itemList.getElementsByTagName('li')
- ;
-  // Convert to an array
-  Array.from(items).forEach(function(item){
-    var itemName = item.firstChild.textContent;
-    var descriptionName=item.childNodes[1].textContent;
-    if(itemName.toLowerCase().indexOf(text) != -1 || descriptionName.toLowerCase().indexOf(text) != -1){
-      item.style.display = 'block';
-    } else {
-      item.style.display = 'none';
-    }
-  });
-}
+// //Filter Items
+// function filterItems(e){
+//   // convert text to lowercase
+//   var text = e.target.value.toLowerCase();
+//   // Get lis
+//   var items = itemList.getElementsByTagName('li')
+//  ;
+//   // Convert to an array
+//   Array.from(items).forEach(function(item){
+//     var itemName = item.firstChild.textContent;
+//     var descriptionName=item.childNodes[1].textContent;
+//     if(itemName.toLowerCase().indexOf(text) != -1 || descriptionName.toLowerCase().indexOf(text) != -1){
+//       item.style.display = 'block';
+//     } else {
+//       item.style.display = 'none';
+//     }
+//   });
+// }

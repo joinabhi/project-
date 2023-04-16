@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <body>
-        <form onsubmit="saveToLocalStorage(event)">
+        <form onsubmit="saveToLocalStorage(obj)">
             <label>Name</label>
             <input type="text" name="username" required>
             <label>EmailId</label>
@@ -9,19 +9,23 @@
             <button>Submit</button>
         </form>
         <script>
-            let content=[]
-            function saveToLocalStorage(event) {
-                event.preventDefault();
-                let data={
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value
-                }
-                content.push(data);
-                document.forms[0].reset();
-              
+            function saveToLocalStorage(obj) {
+                const parentElem=document.getElementById('listofclass')
+                const childElem=document.createElement('li')
+             childElem.textContent=obj.name+'-'+obj.email+'-'+obj.phone
 
-                localStorage.setItem('contentbox', JSON.stringify(content) )
-                
+                 
+                // creating button element
+                var deletebutton = document.createElement('BUTTON');
+                deletebutton.type="button";
+                deletebutton.value="Delete";
+                deletebutton.onclick=()=>{
+                    localStorage.removeItem(obj.email)
+                    parentElem.removeChild(childElem)
+                }
+                 
+               childElem.appendChild(deletebutton)
+               parentElem.appendChild(childElem)
             }
         </script>
     </body>
