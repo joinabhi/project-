@@ -2,11 +2,11 @@
     <body>
         <form onsubmit="saveToLocalStorage(event)">
         <label>Name</label>
-        <input type="text" name="username" required/>
+        <input type="text" name="username" id="nameIdd" required/>
         <label>EmailId</label>
-        <input type="email" name="email" required/>
+        <input type="email" name="email" id="emailIdd" required/>
         <label>Phone number</label>
-        <input type="tel" name="phnumber" required/>
+        <input type="tel" name="phnumber" id="phoneIdd" required/>
         <button>Submit</button>
     </form>
     <ul id="listofitems"></ul>
@@ -21,17 +21,17 @@
                 emailId,
                 phonenumber
             }
-            
+            document.forms[0].reset(); 
             localStorage.setItem(obj.emailId, JSON.stringify(obj));
             showUserOnScreen(obj)
         }
-        function showUserONScreen(obj){
+        function showUserOnScreen(obj){
             const parentElem=document.getElementById('listofitems');
             
             parentElem.innerHTML=parentElem.innerHTML+`<li>${obj.name} - ${obj.emailId} - ${obj.phonenumber}</li>`;
             
         }
-        function showUserONScreen(obj){
+        function showUserOnScreen(obj){
             const parentElem=document.getElementById('listofitems');
             const childElem=document.createElement('li')
             childElem.textContent=obj.name+' - '+obj.emailId+' - '+obj.phonenumber;
@@ -40,14 +40,31 @@
             deleteButton.type="button"
             deleteButton.value="Delete"
 
+
             deleteButton.onclick=()=>{
                 localStorage.removeItem(obj.emailId)
                 parentElem.removeChild(childElem)
             }
+            
+            const EditButton=document.createElement('input')
+            EditButton.type="button"
+            EditButton.value="edit"
+            EditButton.onclick=()=>{
+                localStorage.removeItem(obj.emailId)
+                parentElem.removeChild(childElem)
+                document.getElementById("nameIdd").value=obj.name
+                document.getElementById("emailIdd").value=obj.emailId
+                document.getElementById("phoneIdd").value=obj.phonenumber
+
+
+            }
+
+
             childElem.appendChild(deleteButton)
+            childElem.appendChild(EditButton)
             parentElem.appendChild(childElem)
-            showUserOnScreen(obj)
-        }
+            }
+           
         </script>
     </body>
 </html>
