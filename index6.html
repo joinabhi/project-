@@ -1,44 +1,86 @@
 <html>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <style>
+        table, th, td {
+          border:1px solid black;
+          
+          }
+.form-select {
+  width: 210px;
+  height: 40px;  
+  padding: 10px;
+ 
+}
+
+        
+        </style>
     <body>
         <form onsubmit="saveToLocalStorage(event)">
-        <label>Name</label>
-        <input type="text" name="username" id="nameIdd" required/>
-        <label>EmailId</label>
-        <input type="email" name="email" id="emailIdd" required/>
-        <label>Phone number</label>
-        <input type="tel" name="phnumber" id="phoneIdd" required/>
-        <button>Submit</button>
+        <label>Choose Expenseamount</label>
+        </br>
+        <input type="number" name="amount" id="amountIdd" required/>
+    </br>
+        <label>Choose Description</label>
+    </br>
+        <input type="text" name="description" id="descriptionIdd" required/>
+    </br>
+        <label>Choose a category</label>
+    </br>
+    <select class="form-select" name="category" id="categoryIdd" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option value="Fuel">Fuel</option>
+        <option value="Food">Food</option>
+        <option value="Electricity">Electricity</option>
+        <option value="Movies">Movies</option>
+      </select>
+    </br>
+    
+        <button >Add Expense</button>
     </form>
+    <table style="width:50%">
+            <thead>
+                <tr>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+  
+            </tbody>
+        </table>
+    
+
     <ul id="listofitems"></ul>
     <script>
         function saveToLocalStorage(event){
             event.preventDefault();
-            const name=event.target.username.value;
-            const emailId=event.target.email.value;
-            const phonenumber=event.target.phnumber.value;
+            const Amount=event.target.amount.value;
+            const Description=event.target.description.value;
+            const Category=event.target.category.value;
             const obj={
-                name,
-                emailId,
-                phonenumber
+                Amount,
+                Description,
+                Category
             }
             document.forms[0].reset(); 
-            localStorage.setItem(obj.emailId, JSON.stringify(obj));
+            localStorage.setItem(obj.Description, JSON.stringify(obj));
             showUserOnScreen(obj)
         }
         function showUserOnScreen(obj){
             const parentElem=document.getElementById('listofitems');
-            
-            parentElem.innerHTML=parentElem.innerHTML+`<li>${obj.name} - ${obj.emailId} - ${obj.phonenumber}</li>`;
-            
+            parentElem.innerHTML=parentElem.innerHTML+`<li>${obj.Amount} - ${obj.Description} - ${obj.Category}</li>`;
+            document.forms[0].reset(); 
         }
         function showUserOnScreen(obj){
             const parentElem=document.getElementById('listofitems');
             const childElem=document.createElement('li')
-            childElem.textContent=obj.name+' - '+obj.emailId+' - '+obj.phonenumber;
+            childElem.textContent=obj.Amount+' - '+obj.Description+' - '+obj.Category;
 
             const deleteButton=document.createElement('input')
             deleteButton.type="button"
-            deleteButton.value="Delete"
+            deleteButton.value="Delete Expense"
 
 
             deleteButton.onclick=()=>{
@@ -48,18 +90,16 @@
             
             const EditButton=document.createElement('input')
             EditButton.type="button"
-            EditButton.value="edit"
+            EditButton.value="Edit Expense"
             EditButton.onclick=()=>{
-                localStorage.removeItem(obj.emailId)
+                localStorage.removeItem(obj.Description)
                 parentElem.removeChild(childElem)
-                document.getElementById("nameIdd").value=obj.name
-                document.getElementById("emailIdd").value=obj.emailId
-                document.getElementById("phoneIdd").value=obj.phonenumber
+                document.getElementById("amountIdd").value=obj.Amount
+                document.getElementById("descriptionIdd").value=obj.Description
+                document.getElementById("categoryIdd").value=obj.Category
 
 
             }
-
-
             childElem.appendChild(deleteButton)
             childElem.appendChild(EditButton)
             parentElem.appendChild(childElem)

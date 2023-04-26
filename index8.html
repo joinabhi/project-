@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM manipulation</title>
+</head>
+<body id="body">
+<!--   
+    <div id="firstdiv" class="all-divs">First Div</div> -->
+        <script>
+    //    const alldivs=document.querySelectorAll(".all-divs")
+    //    console.log(alldivs)
+    </script>
+        <!-- <div class="all-divs">Second Div</div>
+    <table>
+        <tr>
+            <td>one</td>
+            <td>Two</td>
+            <td>Three</td>
+            <td>Four</td>
+            <td>Five</td>
+            
+        </tr>
+        <tr>
+            <td>1:1</td>
+            <td>1:2</td>
+            <td>1:3</td>
+            <td>1:4</td>
+            <td>1:5</td>
+        </tr>
+    </table> -->
+    <button id="clickBtn">Click Me BSDK</button>
+    <script>
+        //Root Node
+        // console.log(document.documentElement)
+        // console.log(document.children)
+        // console.log(document.body)
+        // console.log(document.head)
+        // console.log(document.body.childNodes)
+        // console.log(document.body.firstElementChild)
+        // console.log(document.body.lastElementChild)
+        // for(node of document.body.childNodes){
+        //     console.log(document.body.children)
+        // }
+        // let childrenOfBodys=Array.from(document.body.children)
+        // console.log(childrenOfBodys)
+        // const ulTag=document.body.children[0];
+        // console.log(ulTag.nextSibling)
+        // const ulTag=document.body.children[0];
+        // firstLi=ulTag.children[0]
+        // secondLi=ulTag.children[1]
+        // console.log(secondLi.previousElementSibling.textContent)
+        // console.log(secondLi.previousElementSibling)
+        // const tableTag=document.body.children[1];
+        // console.log(tableTag.tBodies[0].rows[0].cells[0].style="background-color:red")
+        // console.log(tableTag.tBodies[0].rows[0].cells[1].style="background-color:green")
+        // console.log(tableTag.tBodies[0].rows[0].cells[2].style="background-color:blue")
+        // console.log(tableTag.tBodies[0].rows[0].cells[3].style="background-color:yellow")
+        // console.log(tableTag.tBodies[0].rows[0].cells[4].style="background-color:purple")
+        // console.log(tableTag.tBodies[0].rows[1].cells[0].style="background-color:red")
+        // console.log(tableTag.tBodies[0].rows[1].cells[1].style="background-color:green")
+        // console.log(tableTag.tBodies[0].rows[1].cells[2].style="background-color:blue")
+        // console.log(tableTag.tBodies[0].rows[1].cells[3].style="background-color:yellow")
+        // console.log(tableTag.tBodies[0].rows[1].cells[4].style="background-color:purple")
+        
+        
+        //ID search
+        // element.style.background="yellow"
+        // const IdTag=document.getElementById("element")
+        // IdTag.style.backgroundColor="Red"
+
+        // const classItems=document.getElementsByClassName("list-items")
+        //  console.log(document.getElementsByTagName("table"))
+        // const clasItems=document.querySelectorAll("ul > li:nth-child(1)")
+        // console.log(clasItems[0].textContent)
+        // console.log(alldivs)
+        // console.log(element.getAttribute("data"))
+        // console.log(element.setAttribute("order-placed","pending"))
+        // console.log(element.getAttribute("order-placed"))
+        // console.log(element.hasAttribute("order-placed"))
+        // console.log(element.removeAttribute("order-placed"))
+        // console.log(element.hasAttribute("order-placed"))
+        // console.log(element.attributes)
+
+        //creating and removing the node elements
+    //     const newDiv=document.createElement('div')
+    //     newDiv.innerHTML=`  <ul id="element" data="valid">
+    //     <li class="list-items">First Element</li>
+    //     <li class="list-items">Second Element</li>
+    //     <li class="list-items">Third Element</li>
+    // </ul>`
+        // const newText=document.createTextNode('Nameste World')
+        // newDiv.appendChild(newText)
+        // body.append(newDiv)
+        // body.prepend(newDiv)
+        // body.after(newDiv)
+        // body.before(newDiv)
+        // firstdiv.replaceWith(newDiv)
+        // firstdiv.remove()
+        
+        function callMe(event){
+            // console.log(event.type)
+            // console.log(event.currentTarget)
+            // console.log(event.clientX)
+            // console.log(event.clientY)
+            
+            alert("Aur Gandu")
+        }
+        clickBtn.addEventListener('click',callMe)
+        clickBtn.addEventListener('click',function(){
+            alert('madarchod')
+        })
+        clickBtn.addEventListener('click',function(){
+            alert('Bsdk itna gali khaya uske baad bhi OK, tu yhi deserve krta h betichod')
+        })
+        // clickBtn.removeEventListener('click',callMe)
+        
+        
+
+</script>
+</body>
+</html>
