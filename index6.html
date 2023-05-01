@@ -53,6 +53,7 @@
     
 
     <ul id="listofitems"></ul>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
     <script>
         function saveToLocalStorage(event){
             event.preventDefault();
@@ -65,8 +66,17 @@
                 Category
             }
             document.forms[0].reset(); 
-            localStorage.setItem(obj.Description, JSON.stringify(obj));
-            showUserOnScreen(obj)
+
+            axios.post("https://crudcrud.com/api/1d29610ebfc745d59dc4d54ecf9855a9/appointmentData",obj)
+            .then((response)=>{
+                showUserOnScreen(response.data)
+                console.log(response)
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+            // localStorage.setItem(obj.Description, JSON.stringify(obj));
+            // showUserOnScreen(response.data)
         }
         function showUserOnScreen(obj){
             const parentElem=document.getElementById('listofitems');
