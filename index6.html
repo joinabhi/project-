@@ -55,7 +55,8 @@
     <ul id="listofitems"></ul>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
     <script>
-        function saveToLocalStorage(event){
+        
+        async function saveToLocalStorage(event){
             event.preventDefault();
             const Amount=event.target.amount.value;
             const Description=event.target.description.value;
@@ -67,10 +68,18 @@
             }
             document.forms[0].reset(); 
 
-            axios.post("https://crudcrud.com/api/1d29610ebfc745d59dc4d54ecf9855a9/appointmentData",obj)
+            // try {
+            //     const response=await axios.post("https://crudcrud.com/api/1d29610ebfc745d59dc4d54ecf9855a9/appointmentData",obj)
+            //     console.log(response)
+            //     showUserOnScreen(response.data)
+            // } catch (error) {
+            //     console.log(error)
+            // }
+            axios.post("https://crudcrud.com/api/82aa65f9d2e243029cd79f1866913075/gandu",obj)
             .then((response)=>{
-                showUserOnScreen(response.data)
                 console.log(response)
+                showUserOnScreen(response.data)
+                
             })
             .catch((err)=>{
                 console.log(err)
@@ -79,7 +88,7 @@
             // showUserOnScreen(response.data)
         }
             window.addEventListener("DOMContentLoaded",()=>{
-                const data=axios.get("https://crudcrud.com/api/1d29610ebfc745d59dc4d54ecf9855a9/appointmentData")
+                const data=axios.get("https://crudcrud.com/api/82aa65f9d2e243029cd79f1866913075/gandu")
                 .then((response)=>{
                     // console.log(response)
                 
@@ -90,20 +99,24 @@
                 .catch((error)=>{
                     console.log(error)
                 })
-                console.log(data)
 
             })
         
-        function showUserOnScreen(obj){
-            const parentElem=document.getElementById('listofitems');
-            parentElem.innerHTML=parentElem.innerHTML+`<li>${obj.Amount} - ${obj.Description} - ${obj.Category}</li>`;
-            document.forms[0].reset(); 
+        // function showUserOnScreen(obj){
+        //     const parentElem=document.getElementById('listofitems');
+        //     parentElem.innerHTML=parentElem.innerHTML+`<li>${obj.Amount} - ${obj.Description} - ${obj.Category}</li>`;
+        //     document.forms[0].reset(); 
 
+        // }
+
+        async function deleteItem(id){
+            await axios.delete(`https://crudcrud.com/api/82aa65f9d2e243029cd79f1866913075/gandu/${id}`)
         }
         function showUserOnScreen(obj){
             const parentElem=document.getElementById('listofitems');
             const childElem=document.createElement('li')
-            childElem.textContent=obj.Amount+' - '+obj.Description+' - '+obj.Category;
+            childElem.textContent=obj._id + '->'+ obj.Amount+' - '+obj.Description+' - '+obj.Category;
+ 
 
             const deleteButton=document.createElement('input')
             deleteButton.type="button"
@@ -111,7 +124,7 @@
 
 
             deleteButton.onclick=()=>{
-                localStorage.removeItem(obj.emailId)
+                deleteItem(obj._id)
                 parentElem.removeChild(childElem)
             }
             
